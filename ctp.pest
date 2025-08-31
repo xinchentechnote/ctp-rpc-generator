@@ -1,0 +1,18 @@
+WHITESPACE = _{ " " | "\t" | "\n" | "\r" }
+
+file = { SOI ~ (struct_definition)* ~ EOI }
+
+struct_definition = {
+    "struct" ~ name ~ "{" ~ field* ~ "}" ~ ";"
+}
+
+field = { type_ ~ name ~ ("[" ~ number ~ "]")? ~ ";" }
+
+type_ = @{
+    "int" | "float" | "double" | "char" | "bool" |
+    "short" | "long" | "unsigned" ~ (" int" | " char")?
+}
+
+name = @{ (ASCII_ALPHA | "_") ~ (ASCII_ALPHANUMERIC | "_")* }
+
+number = @{ ASCII_DIGIT+ }
