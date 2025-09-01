@@ -1,1 +1,7 @@
 /target
+/cmake-build-debug/
+/cmake-build-debug-wsl/
+/build/
+*/.antlr/**
+/antlr/.antlr/
+/.idea/
