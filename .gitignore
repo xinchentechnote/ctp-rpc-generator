@@ -5,3 +5,4 @@
 */.antlr/**
 /antlr/.antlr/
 /.idea/
+core.*
