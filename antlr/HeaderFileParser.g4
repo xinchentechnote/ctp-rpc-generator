@@ -27,5 +27,5 @@ type: IDENTIFIER;
 IDENTIFIER: [a-zA-Z_][a-zA-Z0-9_]*;
 
 COMMENT: '//' .*? '\n' -> skip;
-
+MACRO: '#' .*? '\n' -> skip;
 WHITESPACE : [ \t\r\n]+ -> skip;
