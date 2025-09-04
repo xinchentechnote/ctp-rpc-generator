@@ -31,13 +31,7 @@ public:
 
     virtual antlrcpp::Any visitAccessSpecifier(HeaderFileParserParser::AccessSpecifierContext *context) = 0;
 
-    virtual antlrcpp::Any visitFunctionDeclaration(HeaderFileParserParser::FunctionDeclarationContext *context) = 0;
-
     virtual antlrcpp::Any visitFieldDeclaration(HeaderFileParserParser::FieldDeclarationContext *context) = 0;
-
-    virtual antlrcpp::Any visitParameterList(HeaderFileParserParser::ParameterListContext *context) = 0;
-
-    virtual antlrcpp::Any visitParameter(HeaderFileParserParser::ParameterContext *context) = 0;
 
     virtual antlrcpp::Any visitType(HeaderFileParserParser::TypeContext *context) = 0;
 
@@ -52,6 +46,20 @@ public:
     virtual antlrcpp::Any visitTypeSpecifier(HeaderFileParserParser::TypeSpecifierContext *context) = 0;
 
     virtual antlrcpp::Any visitArrayDeclarator(HeaderFileParserParser::ArrayDeclaratorContext *context) = 0;
+
+    virtual antlrcpp::Any visitFunctionDeclaration(HeaderFileParserParser::FunctionDeclarationContext *context) = 0;
+
+    virtual antlrcpp::Any visitVirtualFunctionDeclaration(HeaderFileParserParser::VirtualFunctionDeclarationContext *context) = 0;
+
+    virtual antlrcpp::Any visitDestructorDeclaration(HeaderFileParserParser::DestructorDeclarationContext *context) = 0;
+
+    virtual antlrcpp::Any visitParameterList(HeaderFileParserParser::ParameterListContext *context) = 0;
+
+    virtual antlrcpp::Any visitParameter(HeaderFileParserParser::ParameterContext *context) = 0;
+
+    virtual antlrcpp::Any visitPointerOrReference(HeaderFileParserParser::PointerOrReferenceContext *context) = 0;
+
+    virtual antlrcpp::Any visitFunctionBody(HeaderFileParserParser::FunctionBodyContext *context) = 0;
 
 
 };

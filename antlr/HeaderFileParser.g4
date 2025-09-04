@@ -14,18 +14,18 @@ structDeclaration:
 	STRUCT IDENTIFIER (':' accessSpecifier IDENTIFIER)? '{' structMember* '}' ';'?;
 classMember:
 	accessSpecifier ':'
-	| functionDeclaration
+	| virtualFunctionDeclaration
+    | destructorDeclaration
+    | functionDeclaration
 	| fieldDeclaration;
 structMember:
 	accessSpecifier ':'
-	| functionDeclaration
+	| virtualFunctionDeclaration
+    | destructorDeclaration
+    | functionDeclaration
 	| fieldDeclaration;
 accessSpecifier: 'public' | 'protected' | 'private';
-functionDeclaration:
-	type IDENTIFIER '(' parameterList? ')' ('const')? (';')?;
 fieldDeclaration: type IDENTIFIER ';';
-parameterList: parameter (',' parameter)*;
-parameter: type IDENTIFIER;
 type: IDENTIFIER;
 defineDirective:
 	'#define' IDENTIFIER (
@@ -54,6 +54,35 @@ typeSpecifier:
 
 arrayDeclarator: '[' NUMBER ']';
 
+functionDeclaration
+    : type IDENTIFIER '(' parameterList? ')' ('const')? (';' | functionBody)?
+    ;
+
+virtualFunctionDeclaration
+    : 'virtual' type IDENTIFIER '(' parameterList? ')' ('const')? (';' | functionBody)?
+    ;
+
+destructorDeclaration
+    : 'virtual'? '~' IDENTIFIER '(' parameterList? ')' ('const')? (';' | functionBody)?
+    ;
+
+parameterList
+    : parameter (',' parameter)*
+    ;
+
+parameter
+    : type pointerOrReference? IDENTIFIER
+    ;
+
+pointerOrReference
+    : ('*' | '&')  // 单指针或引用
+    ;
+
+functionBody
+    : '{' .*? '}'   // 非贪婪匹配函数体内容
+    ;
+
+
 STRING_LITERAL: '"' ( EscapeSequence | ~["] )* '"';
 
 CHAR_LITERAL
@@ -75,12 +104,12 @@ NUMBER: [0-9]+;
 
 //#define THOST_FTDC_EXP_Normal '0' IFENDIFDECLARATION: '#if' .*? '#endif' -> skip; #pragma once
 PRAGMADECLARATION: '#pragma' .*? '\n' -> skip;
-DLLEXPORT : '#define TRADER_API_EXPORT __declspec(dllexport)' '\n' -> skip;
-DLLIMPORT : '#define TRADER_API_IMPORT __declspec(dllimport)' '\n' -> skip;
+TRADER_API_EXPORT : '#define TRADER_API_EXPORT' .*? '\n' -> skip;
+MD_API_EXPORT : '#define MD_API_EXPORT' .*? '\n' -> skip;
 //#include "ThostFtdcUserApiStruct.h"
 INCLUDEDECLARATION: '#include' .*? '\n' -> skip;
 IFDECLARATION: '#if' .*? '\n' -> skip;
-ELSEDECLARATION: '#ELSE' .*? '\n' -> skip;
+ELSEDECLARATION: '#else' .*? '\n' -> skip;
 ENDIFDECLARATION: '#endif' .*? '\n' -> skip;
 COMMENT: '//' .*? '\n' -> skip;
 WHITESPACE: [ \t\r\n]+ -> skip;

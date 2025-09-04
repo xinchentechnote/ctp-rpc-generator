@@ -20,6 +20,8 @@ public:
     antlrcpp::Any visitAccessSpecifier(HeaderFileParserParser::AccessSpecifierContext *context) override;
 
     antlrcpp::Any visitFunctionDeclaration(HeaderFileParserParser::FunctionDeclarationContext *context) override;
+    antlrcpp::Any visitVirtualFunctionDeclaration(HeaderFileParserParser::VirtualFunctionDeclarationContext *context) override;
+    antlrcpp::Any visitDestructorDeclaration(HeaderFileParserParser::DestructorDeclarationContext *context) override;
 
     antlrcpp::Any visitFieldDeclaration(HeaderFileParserParser::FieldDeclarationContext *context) override;
 
@@ -35,6 +37,8 @@ public:
     antlrcpp::Any visitArrayDeclarator(HeaderFileParserParser::ArrayDeclaratorContext *context) override;
     antlrcpp::Any visitEnumDeclaration(HeaderFileParserParser::EnumDeclarationContext *context) override;
     antlrcpp::Any visitEnumMember(HeaderFileParserParser::EnumMemberContext *context) override;
+    antlrcpp::Any visitPointerOrReference(HeaderFileParserParser::PointerOrReferenceContext *context) override;
+    antlrcpp::Any visitFunctionBody(HeaderFileParserParser::FunctionBodyContext *context) override;
 
 
 };
