@@ -2,7 +2,10 @@ grammar HeaderFileParser;
 
 headerFile: classOrStructDeclaration* EOF;
 
-classOrStructDeclaration: classDeclaration | structDeclaration;
+classOrStructDeclaration:
+	classDeclaration
+	| structDeclaration
+	| macroConstantDeclaration;
 
 classDeclaration:
 	'class' IDENTIFIER (':' accessSpecifier IDENTIFIER)? '{' classMember* '}' ';'?;
@@ -23,9 +26,16 @@ fieldDeclaration: type IDENTIFIER ';';
 parameterList: parameter (',' parameter)*;
 parameter: type IDENTIFIER;
 type: IDENTIFIER;
+macroConstantDeclaration: '#define' IDENTIFIER ('\'' . '\'')?;
 
 IDENTIFIER: [a-zA-Z_][a-zA-Z0-9_]*;
-
+//#define THOST_FTDC_EXP_Normal '0'
+IFENDIFDECLARATION: '#if' .*? '#endif' -> skip;
+//#pragma once
+PRAGMADECLARATION: '#pragma' .*? '\n' -> skip;
+//#include "ThostFtdcUserApiStruct.h"
+INCLUDEDECLARATION: '#include' .*? '\n' -> skip;
+IFDECLARATION: '#if' .*? '\n' -> skip;
+ENDIFDECLARATION: '#endif' .*? '\n' -> skip;
 COMMENT: '//' .*? '\n' -> skip;
-MACRO: '#' .*? '\n' -> skip;
-WHITESPACE : [ \t\r\n]+ -> skip;
+WHITESPACE: [ \t\r\n]+ -> skip;
