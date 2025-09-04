@@ -21,8 +21,6 @@ public:
    */
     virtual antlrcpp::Any visitHeaderFile(HeaderFileParserParser::HeaderFileContext *context) = 0;
 
-    virtual antlrcpp::Any visitClassOrStructDeclaration(HeaderFileParserParser::ClassOrStructDeclarationContext *context) = 0;
-
     virtual antlrcpp::Any visitClassDeclaration(HeaderFileParserParser::ClassDeclarationContext *context) = 0;
 
     virtual antlrcpp::Any visitStructDeclaration(HeaderFileParserParser::StructDeclarationContext *context) = 0;
@@ -43,7 +41,17 @@ public:
 
     virtual antlrcpp::Any visitType(HeaderFileParserParser::TypeContext *context) = 0;
 
-    virtual antlrcpp::Any visitMacroConstantDeclaration(HeaderFileParserParser::MacroConstantDeclarationContext *context) = 0;
+    virtual antlrcpp::Any visitDefineDirective(HeaderFileParserParser::DefineDirectiveContext *context) = 0;
+
+    virtual antlrcpp::Any visitEnumDeclaration(HeaderFileParserParser::EnumDeclarationContext *context) = 0;
+
+    virtual antlrcpp::Any visitEnumMember(HeaderFileParserParser::EnumMemberContext *context) = 0;
+
+    virtual antlrcpp::Any visitTypedefDeclaration(HeaderFileParserParser::TypedefDeclarationContext *context) = 0;
+
+    virtual antlrcpp::Any visitTypeSpecifier(HeaderFileParserParser::TypeSpecifierContext *context) = 0;
+
+    virtual antlrcpp::Any visitArrayDeclarator(HeaderFileParserParser::ArrayDeclaratorContext *context) = 0;
 
 
 };

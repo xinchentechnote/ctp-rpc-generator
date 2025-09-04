@@ -19,10 +19,6 @@ public:
     return visitChildren(ctx);
   }
 
-  virtual antlrcpp::Any visitClassOrStructDeclaration(HeaderFileParserParser::ClassOrStructDeclarationContext *ctx) override {
-    return visitChildren(ctx);
-  }
-
   virtual antlrcpp::Any visitClassDeclaration(HeaderFileParserParser::ClassDeclarationContext *ctx) override {
     return visitChildren(ctx);
   }
@@ -63,7 +59,27 @@ public:
     return visitChildren(ctx);
   }
 
-  virtual antlrcpp::Any visitMacroConstantDeclaration(HeaderFileParserParser::MacroConstantDeclarationContext *ctx) override {
+  virtual antlrcpp::Any visitDefineDirective(HeaderFileParserParser::DefineDirectiveContext *ctx) override {
+    return visitChildren(ctx);
+  }
+
+  virtual antlrcpp::Any visitEnumDeclaration(HeaderFileParserParser::EnumDeclarationContext *ctx) override {
+    return visitChildren(ctx);
+  }
+
+  virtual antlrcpp::Any visitEnumMember(HeaderFileParserParser::EnumMemberContext *ctx) override {
+    return visitChildren(ctx);
+  }
+
+  virtual antlrcpp::Any visitTypedefDeclaration(HeaderFileParserParser::TypedefDeclarationContext *ctx) override {
+    return visitChildren(ctx);
+  }
+
+  virtual antlrcpp::Any visitTypeSpecifier(HeaderFileParserParser::TypeSpecifierContext *ctx) override {
+    return visitChildren(ctx);
+  }
+
+  virtual antlrcpp::Any visitArrayDeclarator(HeaderFileParserParser::ArrayDeclaratorContext *ctx) override {
     return visitChildren(ctx);
   }
 
