@@ -43,6 +43,8 @@ public:
 
     virtual antlrcpp::Any visitType(HeaderFileParserParser::TypeContext *context) = 0;
 
+    virtual antlrcpp::Any visitMacroConstantDeclaration(HeaderFileParserParser::MacroConstantDeclarationContext *context) = 0;
+
 
 };
 

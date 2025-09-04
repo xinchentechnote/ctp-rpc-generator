@@ -29,6 +29,8 @@ public:
     antlrcpp::Any visitParameter(HeaderFileParserParser::ParameterContext *context) override;
 
     antlrcpp::Any visitType(HeaderFileParserParser::TypeContext *context) override;
+
+    antlrcpp::Any visitMacroConstantDeclaration(HeaderFileParserParser::MacroConstantDeclarationContext *context) override;
 };
 
 

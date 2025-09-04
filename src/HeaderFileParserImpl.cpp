@@ -78,3 +78,12 @@ antlrcpp::Any HeaderFileParserImpl::visitType(
     HeaderFileParserParser::TypeContext *context) {
     return nullptr;
 }
+
+
+antlrcpp::Any HeaderFileParserImpl::visitMacroConstantDeclaration(
+    HeaderFileParserParser::MacroConstantDeclarationContext *context) {
+    auto idToken = context->getToken(HeaderFileParserParser::IDENTIFIER, 0);
+    if (idToken)
+        std::cout << "Constant: " << idToken->getText() << std::endl;
+    return nullptr;
+}
