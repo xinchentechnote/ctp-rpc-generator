@@ -12,11 +12,6 @@ antlrcpp::Any HeaderFileParserImpl::visitHeaderFile(HeaderFileParserParser::Head
     return visitChildren(context);
 }
 
-antlrcpp::Any HeaderFileParserImpl::visitClassOrStructDeclaration(
-    HeaderFileParserParser::ClassOrStructDeclarationContext *context) {
-    return visitChildren(context);
-}
-
 antlrcpp::Any HeaderFileParserImpl::visitClassDeclaration(
     HeaderFileParserParser::ClassDeclarationContext *context) {
     auto idToken = context->getToken(HeaderFileParserParser::IDENTIFIER, 0);
@@ -80,10 +75,38 @@ antlrcpp::Any HeaderFileParserImpl::visitType(
 }
 
 
-antlrcpp::Any HeaderFileParserImpl::visitMacroConstantDeclaration(
-    HeaderFileParserParser::MacroConstantDeclarationContext *context) {
+antlrcpp::Any HeaderFileParserImpl::visitDefineDirective(
+    HeaderFileParserParser::DefineDirectiveContext *context) {
     auto idToken = context->getToken(HeaderFileParserParser::IDENTIFIER, 0);
     if (idToken)
         std::cout << "Constant: " << idToken->getText() << std::endl;
+    return nullptr;
+}
+
+antlrcpp::Any HeaderFileParserImpl::visitTypedefDeclaration(
+    HeaderFileParserParser::TypedefDeclarationContext *context) {
+    auto idToken = context->getToken(HeaderFileParserParser::IDENTIFIER, 0);
+    if (idToken)
+        std::cout << "Typedef: " << idToken->getText() << std::endl;
+    return nullptr;
+}
+
+antlrcpp::Any HeaderFileParserImpl::visitTypeSpecifier(
+    HeaderFileParserParser::TypeSpecifierContext *context) {
+    return nullptr;
+}
+
+antlrcpp::Any HeaderFileParserImpl::visitArrayDeclarator(
+    HeaderFileParserParser::ArrayDeclaratorContext *context) {
+    return nullptr;
+}
+
+antlrcpp::Any HeaderFileParserImpl::visitEnumDeclaration(
+    HeaderFileParserParser::EnumDeclarationContext *context) {
+    return nullptr;
+}
+
+antlrcpp::Any HeaderFileParserImpl::visitEnumMember(
+    HeaderFileParserParser::EnumMemberContext *context) {
     return nullptr;
 }

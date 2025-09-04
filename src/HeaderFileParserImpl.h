@@ -8,7 +8,6 @@ class HeaderFileParserImpl : public HeaderFileParserVisitor{
 public:
     antlrcpp::Any visitHeaderFile(HeaderFileParserParser::HeaderFileContext *context) override;
 
-    antlrcpp::Any visitClassOrStructDeclaration(HeaderFileParserParser::ClassOrStructDeclarationContext *context) override;
 
     antlrcpp::Any visitClassDeclaration(HeaderFileParserParser::ClassDeclarationContext *context) override;
 
@@ -30,7 +29,14 @@ public:
 
     antlrcpp::Any visitType(HeaderFileParserParser::TypeContext *context) override;
 
-    antlrcpp::Any visitMacroConstantDeclaration(HeaderFileParserParser::MacroConstantDeclarationContext *context) override;
+    antlrcpp::Any visitDefineDirective(HeaderFileParserParser::DefineDirectiveContext *context) override;
+    antlrcpp::Any visitTypedefDeclaration(HeaderFileParserParser::TypedefDeclarationContext *context) override;
+    antlrcpp::Any visitTypeSpecifier(HeaderFileParserParser::TypeSpecifierContext *context) override;
+    antlrcpp::Any visitArrayDeclarator(HeaderFileParserParser::ArrayDeclaratorContext *context) override;
+    antlrcpp::Any visitEnumDeclaration(HeaderFileParserParser::EnumDeclarationContext *context) override;
+    antlrcpp::Any visitEnumMember(HeaderFileParserParser::EnumMemberContext *context) override;
+
+
 };
 
 
