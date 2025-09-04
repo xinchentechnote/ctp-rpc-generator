@@ -1,0 +1,17 @@
+Constant: THOST_FTDCTRADERAPI_H
+Constant: TRADER_API_EXPORT
+Constant: TRADER_API_EXPORT
+Constant: TRADER_API_EXPORT
+Class: CThostFtdcTraderSpi
+Function: OnFrontConnected
+Class: TRADER_API_EXPORT
+Function: CreateFtdcTraderApi
+Function: Release
+Function: Init
+Function: GetFrontInfo
+Function: RegisterFront
+Function: RegisterNameServer
+Function: RegisterFensUserInfo
+Function: RegisterSpi
+Function: SubscribePrivateTopic
+Function: SubscribePublicTopic

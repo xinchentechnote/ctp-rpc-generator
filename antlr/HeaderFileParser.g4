@@ -75,9 +75,12 @@ NUMBER: [0-9]+;
 
 //#define THOST_FTDC_EXP_Normal '0' IFENDIFDECLARATION: '#if' .*? '#endif' -> skip; #pragma once
 PRAGMADECLARATION: '#pragma' .*? '\n' -> skip;
+DLLEXPORT : '#define TRADER_API_EXPORT __declspec(dllexport)' '\n' -> skip;
+DLLIMPORT : '#define TRADER_API_IMPORT __declspec(dllimport)' '\n' -> skip;
 //#include "ThostFtdcUserApiStruct.h"
 INCLUDEDECLARATION: '#include' .*? '\n' -> skip;
 IFDECLARATION: '#if' .*? '\n' -> skip;
+ELSEDECLARATION: '#ELSE' .*? '\n' -> skip;
 ENDIFDECLARATION: '#endif' .*? '\n' -> skip;
 COMMENT: '//' .*? '\n' -> skip;
 WHITESPACE: [ \t\r\n]+ -> skip;
