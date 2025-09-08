@@ -1,3 +1,0 @@
-Constant: THOST_FTDCMDAPI_H
-Class: CThostFtdcMdSpi
-Function: OnFrontConnected
