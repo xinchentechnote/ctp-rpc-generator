@@ -377,6 +377,8 @@ public:
   public:
     FunctionBodyContext(antlr4::ParserRuleContext *parent, size_t invokingState);
     virtual size_t getRuleIndex() const override;
+    std::vector<FunctionBodyContext *> functionBody();
+    FunctionBodyContext* functionBody(size_t i);
 
 
     virtual antlrcpp::Any accept(antlr4::tree::ParseTreeVisitor *visitor) override;

@@ -55,15 +55,15 @@ typeSpecifier:
 arrayDeclarator: '[' NUMBER ']';
 
 functionDeclaration
-    : type IDENTIFIER '(' parameterList? ')' ('const')? (';' | functionBody)?
+    : type IDENTIFIER '(' parameterList? ')' ('const')? (';' | functionBody)? ';'?
     ;
 
 virtualFunctionDeclaration
-    : 'virtual' type IDENTIFIER '(' parameterList? ')' ('const')? (';' | functionBody)?
+    : 'virtual' type IDENTIFIER '(' parameterList? ')' ('const')? (';' | functionBody)? ';'?
     ;
 
 destructorDeclaration
-    : 'virtual'? '~' IDENTIFIER '(' parameterList? ')' ('const')? (';' | functionBody)?
+    : 'virtual'? '~' IDENTIFIER '(' parameterList? ')' ('const')? (';' | functionBody)? ';'?
     ;
 
 parameterList
@@ -79,8 +79,9 @@ pointerOrReference
     ;
 
 functionBody
-    : '{' .*? '}'   // 非贪婪匹配函数体内容
+    : '{' ( ~('{' | '}') | functionBody )* '}'
     ;
+
 
 
 STRING_LITERAL: '"' ( EscapeSequence | ~["] )* '"';
