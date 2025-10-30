@@ -68,6 +68,18 @@ antlrcpp::Any HeaderFileParserImpl::visitVirtualFunctionDeclaration(
   return nullptr;
 }
 
+antlrcpp::Any HeaderFileParserImpl::visitStaticFunctionDeclaration(
+    HeaderFileParserParser::StaticFunctionDeclarationContext *context) {
+  auto idToken = context->getToken(HeaderFileParserParser::IDENTIFIER, 0);
+  if (idToken)
+    std::cout << "Function: " << idToken->getText() << std::endl;
+  return nullptr;
+}
+
+antlrcpp::Any HeaderFileParserImpl::visitDefaultValue(HeaderFileParserParser::DefaultValueContext *context) {
+  return nullptr;
+}
+
 antlrcpp::Any HeaderFileParserImpl::visitFieldDeclaration(
     HeaderFileParserParser::FieldDeclarationContext *context) {
   auto idToken = context->getToken(HeaderFileParserParser::IDENTIFIER, 0);

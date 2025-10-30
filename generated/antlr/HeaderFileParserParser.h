@@ -16,11 +16,11 @@ public:
     T__7 = 8, T__8 = 9, T__9 = 10, T__10 = 11, T__11 = 12, T__12 = 13, T__13 = 14, 
     T__14 = 15, T__15 = 16, T__16 = 17, T__17 = 18, T__18 = 19, T__19 = 20, 
     T__20 = 21, T__21 = 22, T__22 = 23, T__23 = 24, T__24 = 25, T__25 = 26, 
-    T__26 = 27, STRING_LITERAL = 28, CHAR_LITERAL = 29, CLASS = 30, STRUCT = 31, 
-    ENUM = 32, TYPEDEF = 33, IDENTIFIER = 34, NUMBER = 35, PRAGMADECLARATION = 36, 
-    TRADER_API_EXPORT = 37, MD_API_EXPORT = 38, INCLUDEDECLARATION = 39, 
-    IFDECLARATION = 40, ELSEDECLARATION = 41, ENDIFDECLARATION = 42, COMMENT = 43, 
-    WHITESPACE = 44
+    T__26 = 27, T__27 = 28, STRING_LITERAL = 29, CHAR_LITERAL = 30, CLASS = 31, 
+    STRUCT = 32, ENUM = 33, TYPEDEF = 34, IDENTIFIER = 35, NUMBER = 36, 
+    PRAGMADECLARATION = 37, TRADER_API_EXPORT = 38, MD_API_EXPORT = 39, 
+    INCLUDEDECLARATION = 40, IFDECLARATION = 41, ELSEDECLARATION = 42, ENDIFDECLARATION = 43, 
+    COMMENT = 44, WHITESPACE = 45
   };
 
   enum {
@@ -29,8 +29,9 @@ public:
     RuleFieldDeclaration = 6, RuleType = 7, RuleDefineDirective = 8, RuleEnumDeclaration = 9, 
     RuleEnumMember = 10, RuleTypedefDeclaration = 11, RuleTypeSpecifier = 12, 
     RuleArrayDeclarator = 13, RuleFunctionDeclaration = 14, RuleVirtualFunctionDeclaration = 15, 
-    RuleDestructorDeclaration = 16, RuleParameterList = 17, RuleParameter = 18, 
-    RulePointerOrReference = 19, RuleFunctionBody = 20
+    RuleStaticFunctionDeclaration = 16, RuleDestructorDeclaration = 17, 
+    RuleParameterList = 18, RuleParameter = 19, RuleDefaultValue = 20, RulePointerOrReference = 21, 
+    RuleFunctionBody = 22
   };
 
   HeaderFileParserParser(antlr4::TokenStream *input);
@@ -59,9 +60,11 @@ public:
   class ArrayDeclaratorContext;
   class FunctionDeclarationContext;
   class VirtualFunctionDeclarationContext;
+  class StaticFunctionDeclarationContext;
   class DestructorDeclarationContext;
   class ParameterListContext;
   class ParameterContext;
+  class DefaultValueContext;
   class PointerOrReferenceContext;
   class FunctionBodyContext; 
 
@@ -130,6 +133,7 @@ public:
     virtual size_t getRuleIndex() const override;
     AccessSpecifierContext *accessSpecifier();
     VirtualFunctionDeclarationContext *virtualFunctionDeclaration();
+    StaticFunctionDeclarationContext *staticFunctionDeclaration();
     DestructorDeclarationContext *destructorDeclaration();
     FunctionDeclarationContext *functionDeclaration();
     FieldDeclarationContext *fieldDeclaration();
@@ -147,6 +151,7 @@ public:
     virtual size_t getRuleIndex() const override;
     AccessSpecifierContext *accessSpecifier();
     VirtualFunctionDeclarationContext *virtualFunctionDeclaration();
+    StaticFunctionDeclarationContext *staticFunctionDeclaration();
     DestructorDeclarationContext *destructorDeclaration();
     FunctionDeclarationContext *functionDeclaration();
     FieldDeclarationContext *fieldDeclaration();
@@ -188,6 +193,7 @@ public:
   public:
     TypeContext(antlr4::ParserRuleContext *parent, size_t invokingState);
     virtual size_t getRuleIndex() const override;
+    TypeSpecifierContext *typeSpecifier();
     antlr4::tree::TerminalNode *IDENTIFIER();
 
 
@@ -317,6 +323,22 @@ public:
 
   VirtualFunctionDeclarationContext* virtualFunctionDeclaration();
 
+  class  StaticFunctionDeclarationContext : public antlr4::ParserRuleContext {
+  public:
+    StaticFunctionDeclarationContext(antlr4::ParserRuleContext *parent, size_t invokingState);
+    virtual size_t getRuleIndex() const override;
+    TypeContext *type();
+    antlr4::tree::TerminalNode *IDENTIFIER();
+    ParameterListContext *parameterList();
+    FunctionBodyContext *functionBody();
+
+
+    virtual antlrcpp::Any accept(antlr4::tree::ParseTreeVisitor *visitor) override;
+   
+  };
+
+  StaticFunctionDeclarationContext* staticFunctionDeclaration();
+
   class  DestructorDeclarationContext : public antlr4::ParserRuleContext {
   public:
     DestructorDeclarationContext(antlr4::ParserRuleContext *parent, size_t invokingState);
@@ -353,6 +375,7 @@ public:
     TypeContext *type();
     antlr4::tree::TerminalNode *IDENTIFIER();
     PointerOrReferenceContext *pointerOrReference();
+    DefaultValueContext *defaultValue();
 
 
     virtual antlrcpp::Any accept(antlr4::tree::ParseTreeVisitor *visitor) override;
@@ -360,6 +383,22 @@ public:
   };
 
   ParameterContext* parameter();
+
+  class  DefaultValueContext : public antlr4::ParserRuleContext {
+  public:
+    DefaultValueContext(antlr4::ParserRuleContext *parent, size_t invokingState);
+    virtual size_t getRuleIndex() const override;
+    antlr4::tree::TerminalNode *NUMBER();
+    antlr4::tree::TerminalNode *STRING_LITERAL();
+    antlr4::tree::TerminalNode *CHAR_LITERAL();
+    antlr4::tree::TerminalNode *IDENTIFIER();
+
+
+    virtual antlrcpp::Any accept(antlr4::tree::ParseTreeVisitor *visitor) override;
+   
+  };
+
+  DefaultValueContext* defaultValue();
 
   class  PointerOrReferenceContext : public antlr4::ParserRuleContext {
   public:

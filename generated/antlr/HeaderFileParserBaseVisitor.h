@@ -79,6 +79,10 @@ public:
     return visitChildren(ctx);
   }
 
+  virtual antlrcpp::Any visitStaticFunctionDeclaration(HeaderFileParserParser::StaticFunctionDeclarationContext *ctx) override {
+    return visitChildren(ctx);
+  }
+
   virtual antlrcpp::Any visitDestructorDeclaration(HeaderFileParserParser::DestructorDeclarationContext *ctx) override {
     return visitChildren(ctx);
   }
@@ -88,6 +92,10 @@ public:
   }
 
   virtual antlrcpp::Any visitParameter(HeaderFileParserParser::ParameterContext *ctx) override {
+    return visitChildren(ctx);
+  }
+
+  virtual antlrcpp::Any visitDefaultValue(HeaderFileParserParser::DefaultValueContext *ctx) override {
     return visitChildren(ctx);
   }
 

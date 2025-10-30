@@ -51,11 +51,15 @@ public:
 
     virtual antlrcpp::Any visitVirtualFunctionDeclaration(HeaderFileParserParser::VirtualFunctionDeclarationContext *context) = 0;
 
+    virtual antlrcpp::Any visitStaticFunctionDeclaration(HeaderFileParserParser::StaticFunctionDeclarationContext *context) = 0;
+
     virtual antlrcpp::Any visitDestructorDeclaration(HeaderFileParserParser::DestructorDeclarationContext *context) = 0;
 
     virtual antlrcpp::Any visitParameterList(HeaderFileParserParser::ParameterListContext *context) = 0;
 
     virtual antlrcpp::Any visitParameter(HeaderFileParserParser::ParameterContext *context) = 0;
+
+    virtual antlrcpp::Any visitDefaultValue(HeaderFileParserParser::DefaultValueContext *context) = 0;
 
     virtual antlrcpp::Any visitPointerOrReference(HeaderFileParserParser::PointerOrReferenceContext *context) = 0;
 

@@ -21,6 +21,8 @@ public:
 
     antlrcpp::Any visitFunctionDeclaration(HeaderFileParserParser::FunctionDeclarationContext *context) override;
     antlrcpp::Any visitVirtualFunctionDeclaration(HeaderFileParserParser::VirtualFunctionDeclarationContext *context) override;
+    antlrcpp::Any visitStaticFunctionDeclaration(HeaderFileParserParser::StaticFunctionDeclarationContext *context) override;
+    antlrcpp::Any visitDefaultValue(HeaderFileParserParser::DefaultValueContext *context) override;
     antlrcpp::Any visitDestructorDeclaration(HeaderFileParserParser::DestructorDeclarationContext *context) override;
 
     antlrcpp::Any visitFieldDeclaration(HeaderFileParserParser::FieldDeclarationContext *context) override;

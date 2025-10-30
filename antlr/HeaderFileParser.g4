@@ -15,18 +15,22 @@ structDeclaration:
 classMember:
 	accessSpecifier ':'
 	| virtualFunctionDeclaration
+	| staticFunctionDeclaration
     | destructorDeclaration
     | functionDeclaration
 	| fieldDeclaration;
 structMember:
 	accessSpecifier ':'
 	| virtualFunctionDeclaration
+	| staticFunctionDeclaration
     | destructorDeclaration
     | functionDeclaration
 	| fieldDeclaration;
 accessSpecifier: 'public' | 'protected' | 'private';
 fieldDeclaration: type IDENTIFIER ';';
-type: IDENTIFIER;
+
+type: ('const')? ( typeSpecifier | IDENTIFIER);
+
 defineDirective:
 	'#define' IDENTIFIER (
 		NUMBER
@@ -61,6 +65,10 @@ functionDeclaration
 virtualFunctionDeclaration
     : 'virtual' type IDENTIFIER '(' parameterList? ')' ('const')? (';' | functionBody)? ';'?
     ;
+	
+staticFunctionDeclaration
+    : 'static' type '*'? IDENTIFIER '(' parameterList? ')' ('const')? (';' | functionBody)? ';'?
+    ;
 
 destructorDeclaration
     : 'virtual'? '~' IDENTIFIER '(' parameterList? ')' ('const')? (';' | functionBody)? ';'?
@@ -71,8 +79,15 @@ parameterList
     ;
 
 parameter
-    : type pointerOrReference? IDENTIFIER
+    : type pointerOrReference? IDENTIFIER ('=' defaultValue)?
     ;
+
+defaultValue
+	: NUMBER
+	| STRING_LITERAL
+	| CHAR_LITERAL
+	| IDENTIFIER
+	;
 
 pointerOrReference
     : ('*' | '&')  // 单指针或引用
