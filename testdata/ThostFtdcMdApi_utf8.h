@@ -138,7 +138,7 @@ public:
 	///@param ppInstrumentID ºÏÔ¼ID  
 	///@param nCount Òª¶©ÔÄ/ÍË¶©ÐÐÇéµÄºÏÔ¼¸öÊý
 	///@remark 
-	virtual int UnSubscribeMarketData(char *ppInstrumentID[], int nCount) = 0;
+	virtual int UnSubscribeMarketData(char *ppInstrumentID[ ], int nCount) = 0;
 	
 	///¶©ÔÄÑ¯¼Û¡£
 	///@param ppInstrumentID ºÏÔ¼ID  

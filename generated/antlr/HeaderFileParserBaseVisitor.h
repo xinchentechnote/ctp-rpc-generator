@@ -23,6 +23,10 @@ public:
     return visitChildren(ctx);
   }
 
+  virtual antlrcpp::Any visitMacroModifier(HeaderFileParserParser::MacroModifierContext *ctx) override {
+    return visitChildren(ctx);
+  }
+
   virtual antlrcpp::Any visitStructDeclaration(HeaderFileParserParser::StructDeclarationContext *ctx) override {
     return visitChildren(ctx);
   }

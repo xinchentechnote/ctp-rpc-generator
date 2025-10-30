@@ -16,22 +16,22 @@ public:
     T__7 = 8, T__8 = 9, T__9 = 10, T__10 = 11, T__11 = 12, T__12 = 13, T__13 = 14, 
     T__14 = 15, T__15 = 16, T__16 = 17, T__17 = 18, T__18 = 19, T__19 = 20, 
     T__20 = 21, T__21 = 22, T__22 = 23, T__23 = 24, T__24 = 25, T__25 = 26, 
-    T__26 = 27, T__27 = 28, STRING_LITERAL = 29, CHAR_LITERAL = 30, CLASS = 31, 
-    STRUCT = 32, ENUM = 33, TYPEDEF = 34, IDENTIFIER = 35, NUMBER = 36, 
-    PRAGMADECLARATION = 37, TRADER_API_EXPORT = 38, MD_API_EXPORT = 39, 
-    INCLUDEDECLARATION = 40, IFDECLARATION = 41, ELSEDECLARATION = 42, ENDIFDECLARATION = 43, 
-    COMMENT = 44, WHITESPACE = 45
+    T__26 = 27, T__27 = 28, T__28 = 29, STRING_LITERAL = 30, CHAR_LITERAL = 31, 
+    CLASS = 32, STRUCT = 33, ENUM = 34, TYPEDEF = 35, IDENTIFIER = 36, NUMBER = 37, 
+    PRAGMADECLARATION = 38, TRADER_API_EXPORT = 39, MD_API_EXPORT = 40, 
+    INCLUDEDECLARATION = 41, IFDECLARATION = 42, ELSEDECLARATION = 43, ENDIFDECLARATION = 44, 
+    COMMENT = 45, WHITESPACE = 46
   };
 
   enum {
-    RuleHeaderFile = 0, RuleClassDeclaration = 1, RuleStructDeclaration = 2, 
-    RuleClassMember = 3, RuleStructMember = 4, RuleAccessSpecifier = 5, 
-    RuleFieldDeclaration = 6, RuleType = 7, RuleDefineDirective = 8, RuleEnumDeclaration = 9, 
-    RuleEnumMember = 10, RuleTypedefDeclaration = 11, RuleTypeSpecifier = 12, 
-    RuleArrayDeclarator = 13, RuleFunctionDeclaration = 14, RuleVirtualFunctionDeclaration = 15, 
-    RuleStaticFunctionDeclaration = 16, RuleDestructorDeclaration = 17, 
-    RuleParameterList = 18, RuleParameter = 19, RuleDefaultValue = 20, RulePointerOrReference = 21, 
-    RuleFunctionBody = 22
+    RuleHeaderFile = 0, RuleClassDeclaration = 1, RuleMacroModifier = 2, 
+    RuleStructDeclaration = 3, RuleClassMember = 4, RuleStructMember = 5, 
+    RuleAccessSpecifier = 6, RuleFieldDeclaration = 7, RuleType = 8, RuleDefineDirective = 9, 
+    RuleEnumDeclaration = 10, RuleEnumMember = 11, RuleTypedefDeclaration = 12, 
+    RuleTypeSpecifier = 13, RuleArrayDeclarator = 14, RuleFunctionDeclaration = 15, 
+    RuleVirtualFunctionDeclaration = 16, RuleStaticFunctionDeclaration = 17, 
+    RuleDestructorDeclaration = 18, RuleParameterList = 19, RuleParameter = 20, 
+    RuleDefaultValue = 21, RulePointerOrReference = 22, RuleFunctionBody = 23
   };
 
   HeaderFileParserParser(antlr4::TokenStream *input);
@@ -46,6 +46,7 @@ public:
 
   class HeaderFileContext;
   class ClassDeclarationContext;
+  class MacroModifierContext;
   class StructDeclarationContext;
   class ClassMemberContext;
   class StructMemberContext;
@@ -98,6 +99,8 @@ public:
     antlr4::tree::TerminalNode *CLASS();
     std::vector<antlr4::tree::TerminalNode *> IDENTIFIER();
     antlr4::tree::TerminalNode* IDENTIFIER(size_t i);
+    std::vector<MacroModifierContext *> macroModifier();
+    MacroModifierContext* macroModifier(size_t i);
     AccessSpecifierContext *accessSpecifier();
     std::vector<ClassMemberContext *> classMember();
     ClassMemberContext* classMember(size_t i);
@@ -108,6 +111,19 @@ public:
   };
 
   ClassDeclarationContext* classDeclaration();
+
+  class  MacroModifierContext : public antlr4::ParserRuleContext {
+  public:
+    MacroModifierContext(antlr4::ParserRuleContext *parent, size_t invokingState);
+    virtual size_t getRuleIndex() const override;
+    antlr4::tree::TerminalNode *IDENTIFIER();
+
+
+    virtual antlrcpp::Any accept(antlr4::tree::ParseTreeVisitor *visitor) override;
+   
+  };
+
+  MacroModifierContext* macroModifier();
 
   class  StructDeclarationContext : public antlr4::ParserRuleContext {
   public:
@@ -374,8 +390,10 @@ public:
     virtual size_t getRuleIndex() const override;
     TypeContext *type();
     antlr4::tree::TerminalNode *IDENTIFIER();
-    PointerOrReferenceContext *pointerOrReference();
+    std::vector<PointerOrReferenceContext *> pointerOrReference();
+    PointerOrReferenceContext* pointerOrReference(size_t i);
     DefaultValueContext *defaultValue();
+    antlr4::tree::TerminalNode *NUMBER();
 
 
     virtual antlrcpp::Any accept(antlr4::tree::ParseTreeVisitor *visitor) override;

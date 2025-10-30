@@ -23,6 +23,8 @@ public:
 
     virtual antlrcpp::Any visitClassDeclaration(HeaderFileParserParser::ClassDeclarationContext *context) = 0;
 
+    virtual antlrcpp::Any visitMacroModifier(HeaderFileParserParser::MacroModifierContext *context) = 0;
+
     virtual antlrcpp::Any visitStructDeclaration(HeaderFileParserParser::StructDeclarationContext *context) = 0;
 
     virtual antlrcpp::Any visitClassMember(HeaderFileParserParser::ClassMemberContext *context) = 0;

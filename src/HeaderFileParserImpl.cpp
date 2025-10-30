@@ -76,7 +76,13 @@ antlrcpp::Any HeaderFileParserImpl::visitStaticFunctionDeclaration(
   return nullptr;
 }
 
-antlrcpp::Any HeaderFileParserImpl::visitDefaultValue(HeaderFileParserParser::DefaultValueContext *context) {
+antlrcpp::Any HeaderFileParserImpl::visitDefaultValue(
+    HeaderFileParserParser::DefaultValueContext *context) {
+  return nullptr;
+}
+
+antlrcpp::Any HeaderFileParserImpl::visitMacroModifier(
+    HeaderFileParserParser::MacroModifierContext *context) {
   return nullptr;
 }
 

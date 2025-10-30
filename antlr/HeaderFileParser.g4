@@ -9,7 +9,13 @@ headerFile: (
 	)* EOF;
 
 classDeclaration:
-	CLASS IDENTIFIER (':' accessSpecifier IDENTIFIER)? '{' classMember* '}' ';'?;
+	CLASS macroModifier* IDENTIFIER (':' accessSpecifier IDENTIFIER)? '{' classMember* '}' ';'?;
+
+macroModifier
+    : IDENTIFIER
+    ;
+
+
 structDeclaration:
 	STRUCT IDENTIFIER (':' accessSpecifier IDENTIFIER)? '{' structMember* '}' ';'?;
 classMember:
@@ -59,11 +65,11 @@ typeSpecifier:
 arrayDeclarator: '[' NUMBER ']';
 
 functionDeclaration
-    : type IDENTIFIER '(' parameterList? ')' ('const')? (';' | functionBody)? ';'?
+    : type '*'? IDENTIFIER '(' parameterList? ')' ('const')? (';' | functionBody)? ';'?
     ;
 
 virtualFunctionDeclaration
-    : 'virtual' type IDENTIFIER '(' parameterList? ')' ('const')? (';' | functionBody)? ';'?
+    : 'virtual' type '*'? IDENTIFIER '(' parameterList? ')' ('const')? ('=' '0')? (';' | functionBody)? ';'?
     ;
 	
 staticFunctionDeclaration
@@ -79,7 +85,7 @@ parameterList
     ;
 
 parameter
-    : type pointerOrReference? IDENTIFIER ('=' defaultValue)?
+    : type pointerOrReference* IDENTIFIER ('[' NUMBER? ']')? ('=' defaultValue)?
     ;
 
 defaultValue
